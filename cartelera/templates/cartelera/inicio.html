@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cine Norte</title>
+</head>
+<body>
+    <h1>Cine Norte</h1>
+    <p>Duracion promedio: {{ duracion_promedio }} minutos</p>
+    <p>Estrenos: {{ cantidad_estrenos }}</p>
+
+    {% for pelicula in peliculas %}
+        <article>
+            <h2>{{ pelicula.titulo }}</h2>
+            <p>Genero: {{ pelicula.genero }}</p>
+            <p>Precio: ${{ pelicula.precio }}</p>
+        </article>
+    {% empty %}
+        <p>No hay peliculas en cartelera.</p>
+    {% endfor %}
+</body>
+</html>
