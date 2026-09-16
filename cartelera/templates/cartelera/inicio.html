@@ -1,22 +1,45 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Cine Norte</title>
-</head>
-<body>
-    <h1>Cine Norte</h1>
-    <p>Duracion promedio: {{ duracion_promedio }} minutos</p>
-    <p>Estrenos: {{ cantidad_estrenos }}</p>
+{% extends 'base.html' %}
 
-    {% for pelicula in peliculas %}
-        <article>
-            <h2>{{ pelicula.titulo }}</h2>
-            <p>Genero: {{ pelicula.genero }}</p>
-            <p>Precio: ${{ pelicula.precio }}</p>
-        </article>
-    {% empty %}
-        <p>No hay peliculas en cartelera.</p>
-    {% endfor %}
-</body>
-</html>
+{% block titulo %}Cartelera | Cine Norte{% endblock %}
+
+{% block contenido %}
+<section class="presentacion">
+    <p class="eyebrow">Cartelera actual</p>
+    <h1>Historias para mirar hacia el norte</h1>
+    <p>Encuentra tu próxima función en Cine Norte.</p>
+</section>
+
+<section class="resumen" aria-label="Resumen de cartelera">
+    <div>
+        <strong>{{ duracion_promedio }}</strong>
+        <span>minutos de duración promedio</span>
+    </div>
+    <div>
+        <strong>{{ cantidad_estrenos }}</strong>
+        <span>estrenos esta semana</span>
+    </div>
+</section>
+
+<section>
+    <div class="seccion-cabecera">
+        <h2>Películas en cartelera</h2>
+        <span>{{ peliculas|length }} títulos</span>
+    </div>
+
+    <div class="peliculas">
+        {% for pelicula in peliculas %}
+            <article class="pelicula">
+                <div class="pelicula-numero">0{{ pelicula.id }}</div>
+                <div class="pelicula-cuerpo">
+                    <p class="genero">{{ pelicula.genero|upper }}</p>
+                    <h3>{{ pelicula.titulo }}</h3>
+                    <p class="duracion">{{ pelicula.duracion }} min · ${{ pelicula.precio }}</p>
+                    <a class="boton" href="{% url 'cartelera:detalle' pelicula.id %}">Ver detalle</a>
+                </div>
+            </article>
+        {% empty %}
+            <p>No hay películas en cartelera.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

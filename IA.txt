@@ -1,0 +1,13 @@
+Herramienta usada: GitHub Copilot.
+
+Solicitud: generar la interfaz HTML y CSS para una cartelera de cine Django,
+incluyendo una plantilla base, una portada, una pagina de detalle y estilos
+responsive.
+
+Archivos generados o modificados con IA: templates/base.html,
+cartelera/templates/cartelera/inicio.html,
+cartelera/templates/cartelera/detalle.html y static/css/estilos.css.
+
+Cambios posteriores: se incorporaron los nombres y datos oficiales de las
+peliculas entregados por el docente, se ajustaron los textos visibles y se
+configuraron las rutas y los archivos estaticos del proyecto.

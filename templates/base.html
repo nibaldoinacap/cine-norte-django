@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Cine Norte{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    <header class="encabezado">
+        <div class="contenedor encabezado-contenido">
+            <a class="marca" href="{% url 'cartelera:inicio' %}">Cine Norte</a>
+            <span class="marca-secundaria">Cartelera del desierto</span>
+        </div>
+        <img class="imagen-referencia" src="{% static 'images/es1B_inicio.png' %}" alt="Cartelera Cine Norte">
+    </header>
+
+    <main class="contenedor">
+        {% block contenido %}{% endblock %}
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor">Cine Norte | Antofagasta</div>
+    </footer>
+</body>
+</html>

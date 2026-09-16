@@ -7,4 +7,5 @@ app_name = 'cartelera'
 
 urlpatterns = [
     path('', views.inicio, name='inicio'),
+    path('pelicula/<int:id>/', views.detalle, name='detalle'),
 ]

@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 
@@ -46,3 +47,31 @@ def inicio(request):
 		'cantidad_estrenos': cantidad_estrenos,
 	}
 	return render(request, 'cartelera/inicio.html', contexto)
+
+
+def detalle(request, id):
+    pelicula_encontrada = None
+
+    for pelicula in PELICULAS:
+        if pelicula['id'] == id:
+            pelicula_encontrada = pelicula
+            break
+
+    if pelicula_encontrada is None:
+        raise Http404('La pelicula no existe')
+
+    precio_nocturno = round(pelicula_encontrada['precio'] * 1.2)
+
+    if pelicula_encontrada['apta_todo_publico'] and not pelicula_encontrada['estreno']:
+        etiqueta = 'Clasico familiar'
+    elif pelicula_encontrada['estreno']:
+        etiqueta = 'Estreno de la semana'
+    else:
+        etiqueta = 'En cartelera'
+
+    contexto = {
+        'pelicula': pelicula_encontrada,
+        'precio_nocturno': precio_nocturno,
+        'etiqueta': etiqueta,
+    }
+    return render(request, 'cartelera/detalle.html', contexto)
